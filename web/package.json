@@ -17,6 +17,7 @@
     "coffee-workspace-filesystem-storage-service",
     "coffee-workflow-generator",
     "coffee-workflow-glsp-editor",
+    "preference-editor-extension",
     "browser-app"
   ],
   "resolutions": {
@@ -41,7 +42,6 @@
     "**/@theia/terminal": "0.7.1",
     "**/@theia/debug": "0.7.1",
     "**/@theia/console": "0.7.1",
-    "**/@theia/preferences": "0.7.1",
     "**/@theia/core": "0.7.1",
     "**/sprotty": "0.7.0-next.cea0e2b",
     "**/@glsp/sprotty-client": "0.2.0-next.2402c9fc",

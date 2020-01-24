@@ -1,5 +1,5 @@
 {
-  "name": "coffee-editor-extension",
+  "name": "preference-editor-extension",
   "keywords": [
     "theia-extension"
   ],
@@ -9,19 +9,21 @@
     "src"
   ],
   "dependencies": {
-    "@modelserver/theia": "next",
-    "@material-ui/core": "^4.3.0",
-    "@material-ui/icons": "^4.2.0",
+    "@jsonforms/core": "2.3.1",
+    "@jsonforms/react": "2.3.1",
+    "@jsonforms/vanilla-renderers": "2.3.1",
     "@theia/core": "0.7.1",
     "@theia/filesystem": "0.7.1",
     "@theia/workspace": "0.7.1",
+    "@theia/userstorage": "0.7.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^6.0.0",
     "recompose": "^0.27.1",
     "redux": "^3.7.2",
     "uuid": "^3.3.2",
-    "theia-tree-editor": "latest"
+    "theia-tree-editor": "latest",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "rimraf": "latest",
@@ -37,7 +39,7 @@
   },
   "theiaExtensions": [
     {
-      "frontend": "lib/browser/coffee-editor-frontend-module"
+      "frontend": "lib/browser/preference-editor-frontend-module"
     }
   ]
 }

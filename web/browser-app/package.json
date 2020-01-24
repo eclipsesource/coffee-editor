@@ -4,19 +4,16 @@
   "version": "0.0.0",
   "dependencies": {
     "@theia/core": "0.7.1",
-    "@theia/debug": "0.7.1",
     "@theia/editor": "0.7.1",
     "@theia/editorconfig": "0.7.1",
     "@theia/filesystem": "0.7.1",
     "@theia/java": "0.7.1",
-    "@theia/java-debug": "0.7.1",
     "@theia/languages": "0.7.1",
     "@theia/markers": "0.7.1",
     "@theia/messages": "0.7.1",
     "@theia/mini-browser": "0.7.1",
     "@theia/monaco": "0.7.1",
     "@theia/navigator": "0.7.1",
-    "@theia/preferences": "0.7.1",
     "@theia/process": "0.7.1",
     "@theia/outline-view": "0.7.1",
     "@theia/terminal": "0.7.1",
@@ -28,7 +25,8 @@
     "coffee-workflow-analyzer": "0.0.0",
     "coffee-workflow-analyzer-editors": "0.0.0",
     "coffee-java-extension": "0.0.0",
-    "coffee-server": "0.0.0"
+    "coffee-server": "0.0.0",
+    "preference-editor-extension": "1.0.0"
   },
   "devDependencies": {
     "@theia/cli": "0.7.1"

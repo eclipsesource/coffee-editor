@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "noImplicitAny": false,
+        "noEmitOnError": false,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "downlevelIteration": true,
+        "skipLibCheck": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "es5",
+        "jsx": "react",
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "sourceMap": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "rootDir": "src",
+        "outDir": "lib",
+        "keyofStringsOnly": true
+    },
+    "exclude": [
+        "node_modules",
+        "lib"
+    ]
+}
