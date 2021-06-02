@@ -15,12 +15,21 @@
  ********************************************************************************/
 import 'sprotty-theia/css/theia-sprotty.css';
 
-import { CommandPalette, TYPES } from '@eclipse-glsp/client/lib';
-import { GLSPTheiaDiagramServer, TheiaCommandPalette } from '@eclipse-glsp/theia-integration/lib/browser';
+import { CommandPalette, ExternalNavigateToTargetHandler, labelEditModule, TYPES } from '@eclipse-glsp/client/lib';
+import {
+    GLSPTheiaDiagramServer,
+    TheiaCommandPalette,
+    TheiaNavigateToTargetHandler
+} from '@eclipse-glsp/theia-integration/lib/browser';
 import {
     connectTheiaContextMenuService,
-    TheiaContextMenuServiceFactory,
+    TheiaContextMenuServiceFactory
 } from '@eclipse-glsp/theia-integration/lib/browser/diagram/glsp-theia-context-menu-service';
+import {
+    connectTheiaMarkerManager,
+    TheiaMarkerManager,
+    TheiaMarkerManagerFactory
+} from '@eclipse-glsp/theia-integration/lib/browser/diagram/glsp-theia-marker-manager';
 import { SelectionService } from '@theia/core';
 import { createWorkflowDiagramContainer } from 'coffee-workflow-sprotty';
 import { Container, inject, injectable } from 'inversify';
@@ -32,19 +41,24 @@ import { WorkflowNotationLanguage } from '../../common/workflow-language';
 @injectable()
 export class WorkflowDiagramConfiguration implements DiagramConfiguration {
     @inject(SelectionService) protected selectionService: SelectionService;
+    @inject(TheiaNavigateToTargetHandler) protected navigateToTargetHandler: TheiaNavigateToTargetHandler;
+    @inject(TheiaMarkerManagerFactory) protected readonly theiaMarkerManager: () => TheiaMarkerManager;
     @inject(TheiaContextMenuServiceFactory) protected readonly contextMenuServiceFactory: () => TheiaContextMenuService;
     diagramType: string = WorkflowNotationLanguage.DiagramType;
 
     createContainer(widgetId: string): Container {
         const container = createWorkflowDiagramContainer(widgetId);
+        container.load(labelEditModule);
 
         container.bind(TYPES.ModelSource).to(GLSPTheiaDiagramServer).inSingletonScope();
         container.bind(TheiaDiagramServer).toService(GLSPTheiaDiagramServer);
         // container.rebind(KeyTool).to(TheiaKeyTool).inSingletonScope()
         container.bind(TYPES.IActionHandlerInitializer).to(TheiaSprottySelectionForwarder);
+        container.bind(ExternalNavigateToTargetHandler).toConstantValue(this.navigateToTargetHandler);
         container.bind(SelectionService).toConstantValue(this.selectionService);
         container.rebind(CommandPalette).to(TheiaCommandPalette);
         connectTheiaContextMenuService(container, this.contextMenuServiceFactory);
+        connectTheiaMarkerManager(container, this.theiaMarkerManager, this.diagramType);
 
         return container;
     }

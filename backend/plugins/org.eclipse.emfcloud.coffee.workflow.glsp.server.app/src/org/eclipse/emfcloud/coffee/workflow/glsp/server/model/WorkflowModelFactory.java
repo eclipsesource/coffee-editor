@@ -82,8 +82,9 @@ public class WorkflowModelFactory implements ModelFactory {
 			return createEmptyRoot();
 		}
 
+		WorkflowValidationResultChangeListener changeListener = new WorkflowValidationResultChangeListener(modelState, actionProcessor);
 		WorkflowModelServerAccess modelAccess = new WorkflowModelServerAccess(sourceURI.get(), modelServerClient.get(),
-				adapterFactory);
+				adapterFactory, changeListener);
 		modelAccess.subscribe(new WorkflowModelServerSubscriptionListener(modelState, modelAccess, actionProcessor));
 		this.clientSessionManager.addListener(new ClientSessionListener() {
 			@Override
@@ -119,6 +120,8 @@ public class WorkflowModelFactory implements ModelFactory {
 		MappedGModelRoot mappedGModelRoot = populate(workflowFacade, modelState);
 		
 		modelAccess.setNodeMapping(mappedGModelRoot.getMapping());
+		modelAccess.initConstraintList();
+		modelAccess.subscribeToValidation();
 
 		return mappedGModelRoot.getRoot();
 	}
@@ -219,3 +222,4 @@ public class WorkflowModelFactory implements ModelFactory {
 	}
 
 }
+

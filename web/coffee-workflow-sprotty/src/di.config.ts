@@ -30,6 +30,7 @@ import {
     GLSP_TYPES,
     glspCommandPaletteModule,
     glspContextMenuModule,
+    glspDecorationModule,
     glspEditLabelModule,
     GLSPGraph,
     glspHoverModule,
@@ -43,8 +44,10 @@ import {
     labelEditUiModule,
     layoutCommandsModule,
     LogLevel,
+    markerNavigatorModule,
     modelHintsModule,
     modelSourceModule,
+    navigationModule,
     NoOverlapMovmentRestrictor,
     openModule,
     overrideViewerOptions,
@@ -67,7 +70,7 @@ import {
     TYPES,
     validationModule,
     viewportModule,
-    zorderModule,
+    zorderModule
 } from '@eclipse-glsp/client';
 import { Container, ContainerModule } from 'inversify';
 
@@ -92,84 +95,84 @@ const workflowDiagramModule = new ContainerModule(
             DeleteElementContextMenuItemProvider
         );
         const context = { bind, unbind, isBound, rebind };
-        configureModelElement(context, "graph", GLSPGraph, SGraphView);
+        configureModelElement(context, 'graph', GLSPGraph, SGraphView);
         configureModelElement(
             context,
-            "task:automated",
+            'task:automated',
             TaskNode,
             TaskNodeView
         );
-        configureModelElement(context, "task:manual", TaskNode, TaskNodeView);
-        configureModelElement(context, "label:heading", SLabel, SLabelView, {
+        configureModelElement(context, 'task:manual', TaskNode, TaskNodeView);
+        configureModelElement(context, 'label:heading', SLabel, SLabelView, {
             enable: [editLabelFeature]
         });
         configureModelElement(
             context,
-            "comp:comp",
+            'comp:comp',
             SCompartment,
             SCompartmentView
         );
         configureModelElement(
             context,
-            "comp:header",
+            'comp:header',
             SCompartment,
             SCompartmentView
         );
-        configureModelElement(context, "label:icon", SLabel, SLabelView);
-        configureModelElement(context, "html", HtmlRoot, HtmlRootView);
+        configureModelElement(context, 'label:icon', SLabel, SLabelView);
+        configureModelElement(context, 'html', HtmlRoot, HtmlRootView);
         configureModelElement(
             context,
-            "pre-rendered",
+            'pre-rendered',
             PreRenderedElement,
             PreRenderedView
         );
         configureModelElement(
             context,
-            "button:expand",
+            'button:expand',
             SButton,
             ExpandButtonView
         );
         configureModelElement(
             context,
-            "routing-point",
+            'routing-point',
             SRoutingHandle,
             SRoutingHandleView
         );
         configureModelElement(
             context,
-            "volatile-routing-point",
+            'volatile-routing-point',
             SRoutingHandle,
             SRoutingHandleView
         );
-        configureModelElement(context, "edge", SEdge, WorkflowEdgeView);
+        configureModelElement(context, 'edge', SEdge, WorkflowEdgeView);
         configureModelElement(
             context,
-            "edge:weighted",
+            'edge:weighted',
             WeightedEdge,
             WeightedEdgeView
         );
-        configureModelElement(context, "icon", Icon, IconView);
+        configureModelElement(context, 'icon', Icon, IconView);
         configureModelElement(
             context,
-            "activityNode:merge",
+            'activityNode:merge',
             ActivityNode,
             DiamondNodeView
         );
         configureModelElement(
             context,
-            "activityNode:decision",
+            'activityNode:decision',
             ActivityNode,
             DiamondNodeView
         );
         configureModelElement(
             context,
-            "activityNode:fork",
+            'activityNode:fork',
             ActivityNode,
             ForkOrJoinNodeView
         );
         configureModelElement(
             context,
-            "activityNode:join",
+            'activityNode:join',
             ActivityNode,
             ForkOrJoinNodeView
         );
@@ -205,16 +208,17 @@ export default function createContainer(widgetId: string): Container {
         glspServerCopyPasteModule,
         glspCommandPaletteModule,
         paletteModule,
-        routingModule /* , glspDecorationModule*/,
+        routingModule,
+        glspDecorationModule,
         edgeLayoutModule,
         zorderModule,
         layoutCommandsModule,
-        directTaskEditor /* , navigationModule, markerNavigatorModule*/
+        directTaskEditor, navigationModule, markerNavigatorModule
     );
 
     overrideViewerOptions(container, {
         baseDiv: widgetId,
-        hiddenDiv: widgetId + "_hidden",
+        hiddenDiv: widgetId + '_hidden',
         needsClientLayout: true
     });
 

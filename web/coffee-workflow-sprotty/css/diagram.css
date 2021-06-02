@@ -191,3 +191,40 @@ g .movement-not-allowed>.sprotty-node {
 .info>.sprotty-node {
     stroke: var(--glsp-info-foreground)!important;
 }
+
+:root {
+    --glsp-error-foreground: red;
+    --glsp-warning-foreground: yellow;
+    --glsp-info-foreground: lightblue;
+}
+
+.sprotty-issue-background {
+    fill: none;
+}
+
+.sprotty-issue.sprotty-error {
+    fill: var(--glsp-error-foreground);
+}
+
+.sprotty-issue.sprotty-warning {
+    fill: var(--glsp-warning-foreground);
+}
+
+.sprotty-issue.sprotty-info {
+    fill: var(--glsp-info-foreground);
+}
+
+.sprotty-issue.sprotty-error {
+    stroke-width: 0;
+    fill-opacity: 1;
+}
+
+.sprotty-issue.sprotty-warning {
+    stroke-width: 0;
+    fill-opacity: 1;
+}
+
+.sprotty-issue.sprotty-info {
+    stroke-width: 0;
+    fill-opacity: 1;
+}
