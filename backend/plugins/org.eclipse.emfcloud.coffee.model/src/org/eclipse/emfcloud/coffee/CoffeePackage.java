@@ -17,7 +17,9 @@ package org.eclipse.emfcloud.coffee;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -722,13 +724,22 @@ public interface CoffeePackage extends EPackage {
 	int NODE_FEATURE_COUNT = 0;
 
 	/**
+	 * The operation id for the '<em>Has Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = 0;
+
+	/**
 	 * The number of operations of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_OPERATION_COUNT = 0;
+	int NODE_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.TaskImpl <em>Task</em>}' class.
@@ -768,13 +779,49 @@ public interface CoffeePackage extends EPackage {
 	int TASK_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Has Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Has At Most One Incoming</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Has At Most One Outgoing</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Used</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK___IS_USED__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
+	int TASK_OPERATION_COUNT = NODE_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl <em>Automatic Task</em>}' class.
@@ -821,6 +868,42 @@ public interface CoffeePackage extends EPackage {
 	 * @ordered
 	 */
 	int AUTOMATIC_TASK_FEATURE_COUNT = TASK_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Has Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOMATIC_TASK___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = TASK___HAS_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Has At Most One Incoming</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOMATIC_TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Has At Most One Outgoing</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOMATIC_TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Used</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOMATIC_TASK___IS_USED__DIAGNOSTICCHAIN_MAP = TASK___IS_USED__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Automatic Task</em>' class.
@@ -878,6 +961,42 @@ public interface CoffeePackage extends EPackage {
 	int MANUAL_TASK_FEATURE_COUNT = TASK_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Has Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANUAL_TASK___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = TASK___HAS_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Has At Most One Incoming</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANUAL_TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Has At Most One Outgoing</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANUAL_TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Used</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANUAL_TASK___IS_USED__DIAGNOSTICCHAIN_MAP = TASK___IS_USED__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The number of operations of the '<em>Manual Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -904,6 +1023,15 @@ public interface CoffeePackage extends EPackage {
 	 * @ordered
 	 */
 	int FORK_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Has Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Fork</em>' class.
@@ -934,6 +1062,15 @@ public interface CoffeePackage extends EPackage {
 	int JOIN_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Has Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The number of operations of the '<em>Join</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -962,13 +1099,40 @@ public interface CoffeePackage extends EPackage {
 	int DECISION_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Has Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Has One Incoming</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION___HAS_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Has Two Outgoing</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION___HAS_TWO_OUTGOING__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Decision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
+	int DECISION_OPERATION_COUNT = NODE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.MergeImpl <em>Merge</em>}' class.
@@ -990,13 +1154,40 @@ public interface CoffeePackage extends EPackage {
 	int MERGE_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Has Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Has Two Incoming</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE___HAS_TWO_INCOMING__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Has One Outgoing</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE___HAS_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = NODE_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Merge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
+	int MERGE_OPERATION_COUNT = NODE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emfcloud.coffee.impl.FlowImpl <em>Flow</em>}' class.
@@ -1138,6 +1329,17 @@ public interface CoffeePackage extends EPackage {
 	 * @generated
 	 */
 	int PROBABILITY = 24;
+
+
+	/**
+	 * The meta object id for the '<em>Task Name</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.String
+	 * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getTaskName()
+	 * @generated
+	 */
+	int TASK_NAME = 25;
 
 
 	/**
@@ -1547,6 +1749,16 @@ public interface CoffeePackage extends EPackage {
 	EClass getNode();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Node#hasCycle(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Cycle</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has Cycle</em>' operation.
+	 * @see org.eclipse.emfcloud.coffee.Node#hasCycle(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getNode__HasCycle__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Task <em>Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1577,6 +1789,36 @@ public interface CoffeePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTask_Duration();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Task#hasAtMostOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has At Most One Incoming</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has At Most One Incoming</em>' operation.
+	 * @see org.eclipse.emfcloud.coffee.Task#hasAtMostOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTask__HasAtMostOneIncoming__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Task#hasAtMostOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has At Most One Outgoing</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has At Most One Outgoing</em>' operation.
+	 * @see org.eclipse.emfcloud.coffee.Task#hasAtMostOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTask__HasAtMostOneOutgoing__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Task#isUsed(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Is Used</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Used</em>' operation.
+	 * @see org.eclipse.emfcloud.coffee.Task#isUsed(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTask__IsUsed__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.AutomaticTask <em>Automatic Task</em>}'.
@@ -1651,6 +1893,26 @@ public interface CoffeePackage extends EPackage {
 	EClass getDecision();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Decision#hasOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has One Incoming</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has One Incoming</em>' operation.
+	 * @see org.eclipse.emfcloud.coffee.Decision#hasOneIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getDecision__HasOneIncoming__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Decision#hasTwoOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Two Outgoing</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has Two Outgoing</em>' operation.
+	 * @see org.eclipse.emfcloud.coffee.Decision#hasTwoOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getDecision__HasTwoOutgoing__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Merge <em>Merge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1659,6 +1921,26 @@ public interface CoffeePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getMerge();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Merge#hasTwoIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Two Incoming</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has Two Incoming</em>' operation.
+	 * @see org.eclipse.emfcloud.coffee.Merge#hasTwoIncoming(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMerge__HasTwoIncoming__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.emfcloud.coffee.Merge#hasOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has One Outgoing</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has One Outgoing</em>' operation.
+	 * @see org.eclipse.emfcloud.coffee.Merge#hasOneOutgoing(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMerge__HasOneOutgoing__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emfcloud.coffee.Flow <em>Flow</em>}'.
@@ -1752,6 +2034,18 @@ public interface CoffeePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getProbability();
+
+	/**
+	 * Returns the meta object for data type '{@link java.lang.String <em>Task Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Task Name</em>'.
+	 * @see java.lang.String
+	 * @model instanceClass="java.lang.String"
+	 *        extendedMetaData="maxLength='20' minLength='1' pattern='[a-zA-Z0-9%2520\\-%20]+'"
+	 * @generated
+	 */
+	EDataType getTaskName();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2105,6 +2399,14 @@ public interface CoffeePackage extends EPackage {
 		EClass NODE = eINSTANCE.getNode();
 
 		/**
+		 * The meta object literal for the '<em><b>Has Cycle</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNode__HasCycle__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.TaskImpl <em>Task</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2129,6 +2431,30 @@ public interface CoffeePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TASK__DURATION = eINSTANCE.getTask_Duration();
+
+		/**
+		 * The meta object literal for the '<em><b>Has At Most One Incoming</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTask__HasAtMostOneIncoming__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Has At Most One Outgoing</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTask__HasAtMostOneOutgoing__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Used</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TASK___IS_USED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTask__IsUsed__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.AutomaticTaskImpl <em>Automatic Task</em>}' class.
@@ -2197,6 +2523,22 @@ public interface CoffeePackage extends EPackage {
 		EClass DECISION = eINSTANCE.getDecision();
 
 		/**
+		 * The meta object literal for the '<em><b>Has One Incoming</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DECISION___HAS_ONE_INCOMING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getDecision__HasOneIncoming__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Has Two Outgoing</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DECISION___HAS_TWO_OUTGOING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getDecision__HasTwoOutgoing__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.MergeImpl <em>Merge</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2205,6 +2547,22 @@ public interface CoffeePackage extends EPackage {
 		 * @generated
 		 */
 		EClass MERGE = eINSTANCE.getMerge();
+
+		/**
+		 * The meta object literal for the '<em><b>Has Two Incoming</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MERGE___HAS_TWO_INCOMING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMerge__HasTwoIncoming__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Has One Outgoing</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MERGE___HAS_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMerge__HasOneOutgoing__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emfcloud.coffee.impl.FlowImpl <em>Flow</em>}' class.
@@ -2289,6 +2647,16 @@ public interface CoffeePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum PROBABILITY = eINSTANCE.getProbability();
+
+		/**
+		 * The meta object literal for the '<em>Task Name</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.String
+		 * @see org.eclipse.emfcloud.coffee.impl.CoffeePackageImpl#getTaskName()
+		 * @generated
+		 */
+		EDataType TASK_NAME = eINSTANCE.getTaskName();
 
 	}
 

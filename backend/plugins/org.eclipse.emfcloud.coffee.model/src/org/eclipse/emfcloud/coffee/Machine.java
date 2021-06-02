@@ -64,7 +64,7 @@ public interface Machine extends Component {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Workflows</em>' containment reference list.
 	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getMachine_Workflows()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<Workflow> getWorkflows();

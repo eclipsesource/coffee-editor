@@ -15,6 +15,9 @@
  */
 package org.eclipse.emfcloud.coffee;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -27,4 +30,20 @@ package org.eclipse.emfcloud.coffee;
  * @generated
  */
 public interface Merge extends Node {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasTwoIncoming(DiagnosticChain chain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasOneOutgoing(DiagnosticChain chain, Map<?, ?> context);
 } // Merge

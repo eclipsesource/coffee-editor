@@ -15,6 +15,9 @@
  */
 package org.eclipse.emfcloud.coffee;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +44,7 @@ public interface Task extends Node {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getTask_Name()
-	 * @model required="true"
+	 * @model dataType="org.eclipse.emfcloud.coffee.TaskName" required="true"
 	 * @generated
 	 */
 	String getName();
@@ -77,5 +80,29 @@ public interface Task extends Node {
 	 * @generated
 	 */
 	void setDuration(int value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasAtMostOneIncoming(DiagnosticChain chain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasAtMostOneOutgoing(DiagnosticChain chain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean isUsed(DiagnosticChain chain, Map<?, ?> context);
 
 } // Task

@@ -109,6 +109,8 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 				return createRamTypeFromString(eDataType, initialValue);
 			case CoffeePackage.PROBABILITY:
 				return createProbabilityFromString(eDataType, initialValue);
+			case CoffeePackage.TASK_NAME:
+				return createTaskNameFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -130,6 +132,8 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 				return convertRamTypeToString(eDataType, instanceValue);
 			case CoffeePackage.PROBABILITY:
 				return convertProbabilityToString(eDataType, instanceValue);
+			case CoffeePackage.TASK_NAME:
+				return convertTaskNameToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -393,6 +397,24 @@ public class CoffeeFactoryImpl extends EFactoryImpl implements CoffeeFactory {
 	 */
 	public String convertProbabilityToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String createTaskNameFromString(EDataType eDataType, String initialValue) {
+		return (String)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTaskNameToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

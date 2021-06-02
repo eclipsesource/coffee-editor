@@ -13,6 +13,7 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.WorkflowOperationActionHandler;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.WorkflowRequestMarkersActionHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.WorkflowSaveModelActionHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ApplyLabelEditOperationHandler;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operation.ChangeBoundsOperationHandler;
@@ -36,7 +37,9 @@ import org.eclipse.glsp.server.diagram.DiagramConfiguration;
 import org.eclipse.glsp.server.features.commandpalette.CommandPaletteActionProvider;
 import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
 import org.eclipse.glsp.server.features.core.model.ModelFactory;
+import org.eclipse.glsp.server.features.directediting.LabelEditValidator;
 import org.eclipse.glsp.server.features.undoredo.UndoRedoActionHandler;
+import org.eclipse.glsp.server.features.validation.RequestMarkersHandler;
 import org.eclipse.glsp.server.layout.ILayoutEngine;
 import org.eclipse.glsp.server.layout.ServerLayoutConfiguration;
 import org.eclipse.glsp.server.model.ModelStateProvider;
@@ -78,6 +81,7 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 		super.configureActionHandlers(bindings);
 		bindings.rebind(OperationActionHandler.class, WorkflowOperationActionHandler.class);
 		bindings.rebind(SaveModelActionHandler.class, WorkflowSaveModelActionHandler.class);
+		bindings.rebind(RequestMarkersHandler.class, WorkflowRequestMarkersActionHandler.class);
 		// TODO inject own undo/redo once incremental model server is ready
 		bindings.remove(UndoRedoActionHandler.class);
 	}
@@ -125,6 +129,11 @@ public class WorkflowGLSPModule extends DefaultGLSPModule {
 	@Override
 	protected Class<? extends ContextMenuItemProvider> bindContextMenuItemProvider() {
 		return WorkflowContextMenuItemProvider.class;
+	}
+	
+	@Override
+	protected Class<? extends LabelEditValidator> bindLabelEditValidator(){
+		return WorkflowLabelEditValidator.class;
 	}
 
 	@Override

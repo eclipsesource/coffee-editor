@@ -67,7 +67,7 @@ public interface Workflow extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nodes</em>' containment reference list.
 	 * @see org.eclipse.emfcloud.coffee.CoffeePackage#getWorkflow_Nodes()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<Node> getNodes();

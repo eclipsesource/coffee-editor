@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -42,6 +43,10 @@ import org.eclipse.emfcloud.modelserver.client.NotificationSubscriptionListener;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.emfcloud.modelserver.command.CCommand;
 import org.eclipse.emfcloud.modelserver.common.codecs.EncodingException;
+import org.eclipse.emfcloud.modelserver.emf.common.EMFFacetConstraints;
+import org.eclipse.emfcloud.validation.framework.ValidationFilter;
+import org.eclipse.emfcloud.validation.framework.ValidationFramework;
+import org.eclipse.emfcloud.validation.framework.ValidationResult;
 import org.eclipse.glsp.graph.GNode;
 import org.eclipse.glsp.server.protocol.GLSPServerException;
 
@@ -59,16 +64,22 @@ public class WorkflowModelServerAccess {
 
 	private Map<String, Node> idMapping;
 
+	private Map<String, GNode> nodeMapping;
+
 	private ModelServerClient modelServerClient;
 	private NotificationSubscriptionListener<EObject> subscriptionListener;
 
 	private EditingDomain editingDomain;
 
+	private ValidationFramework validationFramework;
+
 	public WorkflowModelServerAccess(String sourceURI, ModelServerClient modelServerClient,
-			AdapterFactory adapterFactory) {
+			AdapterFactory adapterFactory, WorkflowValidationResultChangeListener changeListener) {
 		Preconditions.checkNotNull(modelServerClient);
 		this.sourceURI = sourceURI;
 		this.modelServerClient = modelServerClient;
+		this.validationFramework = new ValidationFramework(getSemanticResource(sourceURI), modelServerClient,
+				changeListener);
 		this.resourceSet = setupResourceSet();
 		this.editingDomain = new AdapterFactoryEditingDomain(adapterFactory, new BasicCommandStack(), resourceSet);
 	}
@@ -82,6 +93,48 @@ public class WorkflowModelServerAccess {
 		if (subscriptionListener != null) {
 			this.modelServerClient.unsubscribe(getSemanticResource(sourceURI));
 		}
+	}
+
+	public CompletableFuture<Void> validate() throws IOException, InterruptedException, ExecutionException {
+		return this.validationFramework.validate();
+	}
+
+	public List<ValidationResult> getValidationResult() throws IOException, InterruptedException, ExecutionException {
+		return this.validationFramework.getRecentValidationResult();
+	}
+
+	public void initConstraintList() {
+		this.validationFramework.getConstraintList();
+	}
+
+	public EMFFacetConstraints getConstraintList(String elementID, String featureID) {
+		Map<String, EMFFacetConstraints> featureMap = this.validationFramework.getInputValidationMap().get(elementID);
+		if (featureMap != null)
+			return featureMap.get(featureID);
+		return null;
+	}
+
+	public void subscribeToValidation() {
+		this.validationFramework.subscribeToValidation();
+	}
+
+	public void unsubscribeFromValidation() {
+		this.validationFramework.unsubscribeFromValidation();
+	}
+
+	public void addValidationFilter(List<ValidationFilter> contraintValues)
+			throws IOException, InterruptedException, ExecutionException {
+		this.validationFramework.addValidationFilter(contraintValues);
+	}
+
+	public void removeValidationFilter(List<ValidationFilter> contraintValues)
+			throws IOException, InterruptedException, ExecutionException {
+		this.validationFramework.removeValidationFilter(contraintValues);
+	}
+
+	public void toggleValidationFilter(ValidationFilter contraintValue)
+			throws IOException, InterruptedException, ExecutionException {
+		this.validationFramework.toggleValidationFilter(contraintValue);
 	}
 
 	public void update() {
@@ -163,14 +216,24 @@ public class WorkflowModelServerAccess {
 	}
 
 	private void initIdMap(Map<Node, GNode> mapping) {
+		nodeMapping = new HashMap<>();
+		mapping.entrySet().forEach(entry -> {
+			String uri = EcoreUtil.getURI(entry.getKey()).toString();
+			nodeMapping.put(normalize(uri), entry.getValue());
+		});
 		idMapping = new HashMap<>();
 		mapping.entrySet().forEach(entry -> idMapping.put(entry.getValue().getId(), entry.getKey()));
+	}
+
+	private String normalize(String uri) {
+		int last = uri.lastIndexOf("//");
+		return uri.substring(last);
 	}
 
 	public Node getNodeById(String id) {
 		return idMapping.get(id);
 	}
-	
+
 	public EObject getModel() {
 		try {
 			return modelServerClient.get(getSemanticResource(sourceURI), FORMAT_XMI).thenApply(res -> res.body()).get();
@@ -178,6 +241,10 @@ public class WorkflowModelServerAccess {
 			// TODO Auto-generated catch block
 			throw new GLSPServerException("Error during model loading", e);
 		}
+	}
+
+	public GNode getGNodeBySemanticId(String id) {
+		return nodeMapping.get(id);
 	}
 
 	public Optional<Flow> getFlow(Node source, Node target) {
