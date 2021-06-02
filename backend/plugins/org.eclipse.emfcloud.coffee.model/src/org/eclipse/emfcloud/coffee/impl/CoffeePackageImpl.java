@@ -17,10 +17,14 @@ package org.eclipse.emfcloud.coffee.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emfcloud.coffee.AutomaticTask;
@@ -49,6 +53,7 @@ import org.eclipse.emfcloud.coffee.Task;
 import org.eclipse.emfcloud.coffee.WaterTank;
 import org.eclipse.emfcloud.coffee.WeightedFlow;
 import org.eclipse.emfcloud.coffee.Workflow;
+import org.eclipse.emfcloud.coffee.util.CoffeeValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -233,6 +238,13 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 	private EEnum probabilityEEnum = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType taskNameEDataType = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -284,6 +296,15 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 
 		// Initialize created meta-data
 		theCoffeePackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theCoffeePackage,
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return CoffeeValidator.INSTANCE;
+				 }
+			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theCoffeePackage.freeze();
@@ -640,6 +661,15 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getNode__HasCycle__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTask() {
 		return taskEClass;
 	}
@@ -660,6 +690,33 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 	 */
 	public EAttribute getTask_Duration() {
 		return (EAttribute)taskEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTask__HasAtMostOneIncoming__DiagnosticChain_Map() {
+		return taskEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTask__HasAtMostOneOutgoing__DiagnosticChain_Map() {
+		return taskEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTask__IsUsed__DiagnosticChain_Map() {
+		return taskEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -730,8 +787,44 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getDecision__HasOneIncoming__DiagnosticChain_Map() {
+		return decisionEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDecision__HasTwoOutgoing__DiagnosticChain_Map() {
+		return decisionEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMerge() {
 		return mergeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMerge__HasTwoIncoming__DiagnosticChain_Map() {
+		return mergeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMerge__HasOneOutgoing__DiagnosticChain_Map() {
+		return mergeEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -820,6 +913,15 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getTaskName() {
+		return taskNameEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CoffeeFactory getCoffeeFactory() {
 		return (CoffeeFactory)getEFactoryInstance();
 	}
@@ -892,10 +994,14 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 		createEReference(workflowEClass, WORKFLOW__FLOWS);
 
 		nodeEClass = createEClass(NODE);
+		createEOperation(nodeEClass, NODE___HAS_CYCLE__DIAGNOSTICCHAIN_MAP);
 
 		taskEClass = createEClass(TASK);
 		createEAttribute(taskEClass, TASK__NAME);
 		createEAttribute(taskEClass, TASK__DURATION);
+		createEOperation(taskEClass, TASK___HAS_AT_MOST_ONE_INCOMING__DIAGNOSTICCHAIN_MAP);
+		createEOperation(taskEClass, TASK___HAS_AT_MOST_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP);
+		createEOperation(taskEClass, TASK___IS_USED__DIAGNOSTICCHAIN_MAP);
 
 		automaticTaskEClass = createEClass(AUTOMATIC_TASK);
 		createEReference(automaticTaskEClass, AUTOMATIC_TASK__COMPONENT);
@@ -908,8 +1014,12 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 		joinEClass = createEClass(JOIN);
 
 		decisionEClass = createEClass(DECISION);
+		createEOperation(decisionEClass, DECISION___HAS_ONE_INCOMING__DIAGNOSTICCHAIN_MAP);
+		createEOperation(decisionEClass, DECISION___HAS_TWO_OUTGOING__DIAGNOSTICCHAIN_MAP);
 
 		mergeEClass = createEClass(MERGE);
+		createEOperation(mergeEClass, MERGE___HAS_TWO_INCOMING__DIAGNOSTICCHAIN_MAP);
+		createEOperation(mergeEClass, MERGE___HAS_ONE_OUTGOING__DIAGNOSTICCHAIN_MAP);
 
 		flowEClass = createEClass(FLOW);
 		createEReference(flowEClass, FLOW__SOURCE);
@@ -923,6 +1033,9 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 		manufactoringProcessEEnum = createEEnum(MANUFACTORING_PROCESS);
 		ramTypeEEnum = createEEnum(RAM_TYPE);
 		probabilityEEnum = createEEnum(PROBABILITY);
+
+		// Create data types
+		taskNameEDataType = createEDataType(TASK_NAME);
 	}
 
 	/**
@@ -974,7 +1087,7 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 
 		initEClass(machineEClass, Machine.class, "Machine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMachine_Name(), ecorePackage.getEString(), "name", null, 1, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMachine_Workflows(), this.getWorkflow(), null, "workflows", null, 0, -1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMachine_Workflows(), this.getWorkflow(), null, "workflows", null, 1, -1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(controlUnitEClass, ControlUnit.class, "ControlUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getControlUnit_Processor(), this.getProcessor(), null, "processor", null, 1, 1, ControlUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1013,14 +1126,50 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 
 		initEClass(workflowEClass, Workflow.class, "Workflow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWorkflow_Name(), ecorePackage.getEString(), "name", null, 1, 1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWorkflow_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflow_Nodes(), this.getNode(), null, "nodes", null, 1, -1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflow_Flows(), this.getFlow(), null, "flows", null, 0, -1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		EOperation op = initEOperation(getNode__HasCycle__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasCycle", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(taskEClass, Task.class, "Task", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTask_Name(), ecorePackage.getEString(), "name", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTask_Name(), this.getTaskName(), "name", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTask_Duration(), ecorePackage.getEInt(), "duration", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getTask__HasAtMostOneIncoming__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasAtMostOneIncoming", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getTask__HasAtMostOneOutgoing__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasAtMostOneOutgoing", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getTask__IsUsed__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "isUsed", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(automaticTaskEClass, AutomaticTask.class, "AutomaticTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAutomaticTask_Component(), this.getComponent(), null, "component", null, 0, 1, AutomaticTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1034,7 +1183,43 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 
 		initEClass(decisionEClass, Decision.class, "Decision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		op = initEOperation(getDecision__HasOneIncoming__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasOneIncoming", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getDecision__HasTwoOutgoing__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasTwoOutgoing", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(mergeEClass, Merge.class, "Merge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getMerge__HasTwoIncoming__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasTwoIncoming", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getMerge__HasOneOutgoing__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasOneOutgoing", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "chain", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(flowEClass, Flow.class, "Flow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlow_Source(), this.getNode(), null, "source", null, 1, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1061,8 +1246,33 @@ public class CoffeePackageImpl extends EPackageImpl implements CoffeePackage {
 		addEEnumLiteral(probabilityEEnum, Probability.MEDIUM);
 		addEEnumLiteral(probabilityEEnum, Probability.HIGH);
 
+		// Initialize data types
+		initEDataType(taskNameEDataType, String.class, "TaskName", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
+		createExtendedMetaDataAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createExtendedMetaDataAnnotations() {
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
+		addAnnotation
+		  (taskNameEDataType,
+		   source,
+		   new String[] {
+			   "maxLength", "20",
+			   "minLength", "1",
+			   "pattern", "[a-zA-Z0-9%2520\\-%20]+"
+		   });
 	}
 
 } //CoffeePackageImpl

@@ -25,6 +25,7 @@
       <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//Probability/medium"/>
       <genEnumLiterals ecoreEnumLiteral="Coffee.ecore#//Probability/high"/>
     </genEnums>
+    <genDataTypes ecoreDataType="Coffee.ecore#//TaskName"/>
     <genClasses image="false" ecoreClass="Coffee.ecore#//Component">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//Component/children"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Coffee.ecore#//Component/parent"/>
@@ -70,10 +71,27 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//Workflow/nodes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Coffee.ecore#//Workflow/flows"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Coffee.ecore#//Node"/>
+    <genClasses image="false" ecoreClass="Coffee.ecore#//Node">
+      <genOperations ecoreOperation="Coffee.ecore#//Node/hasCycle">
+        <genParameters ecoreParameter="Coffee.ecore#//Node/hasCycle/chain"/>
+        <genParameters ecoreParameter="Coffee.ecore#//Node/hasCycle/context"/>
+      </genOperations>
+    </genClasses>
     <genClasses image="false" ecoreClass="Coffee.ecore#//Task">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Task/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Coffee.ecore#//Task/duration"/>
+      <genOperations ecoreOperation="Coffee.ecore#//Task/hasAtMostOneIncoming">
+        <genParameters ecoreParameter="Coffee.ecore#//Task/hasAtMostOneIncoming/chain"/>
+        <genParameters ecoreParameter="Coffee.ecore#//Task/hasAtMostOneIncoming/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Coffee.ecore#//Task/hasAtMostOneOutgoing">
+        <genParameters ecoreParameter="Coffee.ecore#//Task/hasAtMostOneOutgoing/chain"/>
+        <genParameters ecoreParameter="Coffee.ecore#//Task/hasAtMostOneOutgoing/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Coffee.ecore#//Task/isUsed">
+        <genParameters ecoreParameter="Coffee.ecore#//Task/isUsed/chain"/>
+        <genParameters ecoreParameter="Coffee.ecore#//Task/isUsed/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Coffee.ecore#//AutomaticTask">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Coffee.ecore#//AutomaticTask/component"/>
@@ -83,8 +101,26 @@
     </genClasses>
     <genClasses ecoreClass="Coffee.ecore#//Fork"/>
     <genClasses ecoreClass="Coffee.ecore#//Join"/>
-    <genClasses ecoreClass="Coffee.ecore#//Decision"/>
-    <genClasses ecoreClass="Coffee.ecore#//Merge"/>
+    <genClasses ecoreClass="Coffee.ecore#//Decision">
+      <genOperations ecoreOperation="Coffee.ecore#//Decision/hasOneIncoming">
+        <genParameters ecoreParameter="Coffee.ecore#//Decision/hasOneIncoming/chain"/>
+        <genParameters ecoreParameter="Coffee.ecore#//Decision/hasOneIncoming/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Coffee.ecore#//Decision/hasTwoOutgoing">
+        <genParameters ecoreParameter="Coffee.ecore#//Decision/hasTwoOutgoing/chain"/>
+        <genParameters ecoreParameter="Coffee.ecore#//Decision/hasTwoOutgoing/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Coffee.ecore#//Merge">
+      <genOperations ecoreOperation="Coffee.ecore#//Merge/hasTwoIncoming">
+        <genParameters ecoreParameter="Coffee.ecore#//Merge/hasTwoIncoming/chain"/>
+        <genParameters ecoreParameter="Coffee.ecore#//Merge/hasTwoIncoming/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Coffee.ecore#//Merge/hasOneOutgoing">
+        <genParameters ecoreParameter="Coffee.ecore#//Merge/hasOneOutgoing/chain"/>
+        <genParameters ecoreParameter="Coffee.ecore#//Merge/hasOneOutgoing/context"/>
+      </genOperations>
+    </genClasses>
     <genClasses ecoreClass="Coffee.ecore#//Flow">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Coffee.ecore#//Flow/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Coffee.ecore#//Flow/target"/>
